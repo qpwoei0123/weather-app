@@ -5,10 +5,20 @@ type Props = {
   params: {
     location: string;
   };
+  searchParams: {
+    name: string;
+  };
 };
 
-export default async function Detail({ params }: Props) {
-  const name = params.location == "seoul" ? "서울" : params.location;
+export function generateMetadata({ searchParams }: Props) {
+  return {
+    title: `날씨앱 - ${searchParams.name}`,
+    discription: `${searchParams.name} 의날씨를 알려드림`,
+  };
+}
+
+export default async function Detail({ params, searchParams }: Props) {
+  const name = searchParams.name;
   const res = await getForecast(params.location);
 
   return (

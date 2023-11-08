@@ -13,14 +13,14 @@ export default async function Home() {
       {time.dateTime}
       <ul className={style.list}>
         <li>
-          <Link href="seoul">서울</Link>
+          <Link href="seoul?name=서울">서울</Link>
           {res.current.condition.text}
         </li>
         <li>
-          <Link href="newyork">뉴옥</Link>
+          <Link href="NYC?name=뉴욕">뉴옥</Link>
         </li>
         <li>
-          <Link href="rondon">런던</Link>
+          <Link href="rondon?name=런던">런던</Link>
         </li>
       </ul>
       <RevalidateButton tag={"time"} />
