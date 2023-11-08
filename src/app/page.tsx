@@ -1,21 +1,11 @@
 import Link from "next/link";
 import style from "./style.module.css";
-
-const API_KEY = process.env.NEXT_PUBLIC_API_KEY;
-
-const getCurrentWeather = async () => {
-  const res = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=seoul&aqi=no`
-  );
-  if (!res.ok) {
-    if (!res.ok) throw new Error(`날씨정보 못 가져옴`);
-  }
-  return res.json();
-};
+import { getCurrentWeather } from "./utils/getCrurrentWeather";
 
 export default async function Home() {
-  const res = await getCurrentWeather();
-  console.log(res);
+  const res = await getCurrentWeather("seoul");
+  console.log(res.current.condition.text);
+  const locations = ["seoul", "newyork", "rondon"];
 
   return (
     <>
@@ -23,6 +13,7 @@ export default async function Home() {
       <ul className={style.list}>
         <li>
           <Link href="seoul">서울</Link>
+          {res.current.condition.text}
         </li>
         <li>
           <Link href="newyork">뉴옥</Link>
