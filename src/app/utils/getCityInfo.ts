@@ -1,3 +1,5 @@
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
+
 interface CityInfo {
   city: string | null;
   latitude: number | null;
@@ -8,7 +10,7 @@ export const getCityInfo = (): Promise<CityInfo> => {
   return new Promise((resolve, reject) => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyC5xw7dXiKB1bNvV3_oVJRNaB3Lcdxa8mI`;
+        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${API_KEY}`;
         fetch(geocodingUrl)
           .then((response) => response.json())
           .then((data) => {
