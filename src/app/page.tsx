@@ -40,7 +40,7 @@ export default async function Home() {
           <p> {time3.dateTime}</p>
         </li>
       </ul>
-      <RevalidateButton tag={"time"} />
+      <RevalidateButton tag={"current"} />
     </div>
   );
 }
