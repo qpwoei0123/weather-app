@@ -1,5 +1,6 @@
 import HomeButton from "@/component/HomeButton";
 import { getForecast } from "../utils/getForecast";
+import RevalidateButton from "@/component/RevalidateButton";
 
 type Props = {
   params: {
@@ -30,6 +31,7 @@ export default async function Detail({ params, searchParams }: Props) {
         </li>
       ))}
       <HomeButton />
+      <RevalidateButton tag={"forecast"} />
     </>
   );
 }
