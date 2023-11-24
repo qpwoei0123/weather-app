@@ -151,7 +151,8 @@ export interface Condition {
 
 export const getForecast = async (location: string): Promise<Root> => {
   const res = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3&aqi=no&alerts=no`
+    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${location}&days=3&aqi=no&alerts=no`,
+    { next: { tags: ["forecast"] } }
   );
   if (!res.ok) {
     throw new Error(`날씨예보를 못 가져옴`);
