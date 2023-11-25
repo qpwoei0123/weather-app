@@ -3,41 +3,30 @@ import style from "./style.module.css";
 import { getCurrentWeather } from "./utils/getCrurrentWeather";
 import { getTime } from "./utils/getTime";
 import RevalidateButton from "@/component/RevalidateButton";
+import { getCityInfo } from "./utils/getCityInfo";
 
 export default async function Home() {
-  const res1 = await getCurrentWeather("seoul");
-  const res2 = await getCurrentWeather("NYC ");
-  const res3 = await getCurrentWeather("rondon");
-  const time1 = await getTime(res1.location.tz_id);
-  const time2 = await getTime(res2.location.tz_id);
-  const time3 = await getTime(res3.location.tz_id);
+  const city = await getCityInfo();
+
+  const res = await getCurrentWeather("seoul");
+
+  const time = await getTime(res.location.tz_id);
 
   return (
     <div className={style.box}>
-      <h1>날씨 앱</h1>
-
       <ul className={style.list}>
         <li>
           <Link href="seoul?name=서울" className={style.link}>
             서울
           </Link>
-          <p>{res1.current.condition.text} </p>
-          <p> {time1.dateTime}</p>
-        </li>
+          <p>{res.current.condition.text} </p>
+          <p> {time.date}</p>
 
-        <li>
-          <Link href="NYC?name=뉴욕" className={style.link}>
-            뉴욕
-          </Link>
-          <p>{res2.current.condition.text} </p>
-          <p> {time2.dateTime}</p>
-        </li>
-        <li>
-          <Link href="rondon?name=런던" className={style.link}>
-            런던
-          </Link>
-          <p>{res3.current.condition.text} </p>
-          <p> {time3.dateTime}</p>
+          <p> {time.year}</p>
+          <p> {time.month}</p>
+          <p> {time.day}</p>
+          <p> {time.dayOfWeek}</p>
+          <p> {time.time}</p>
         </li>
       </ul>
       <RevalidateButton tag={"current"} />
