@@ -3,11 +3,9 @@ import style from "./style.module.css";
 import { getCurrentWeather } from "./utils/getCrurrentWeather";
 import { getTime } from "./utils/getTime";
 import RevalidateButton from "@/component/RevalidateButton";
-import { getCityInfo } from "./utils/getCityInfo";
+import MyCityDiv from "../component/MyCityDiv";
 
 export default async function Home() {
-  const city = await getCityInfo();
-
   const res = await getCurrentWeather("seoul");
 
   const time = await getTime(res.location.tz_id);
@@ -30,6 +28,7 @@ export default async function Home() {
         </li>
       </ul>
       <RevalidateButton tag={"current"} />
+      <MyCityDiv />
     </div>
   );
 }
