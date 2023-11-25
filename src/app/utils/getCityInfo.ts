@@ -1,41 +1,35 @@
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLEMAPS_API_KEY;
 
-interface CityInfo {
-  city: string | null;
-  latitude: number | null;
-  longitude: number | null;
-}
-
-export const getCityInfo = (): Promise<CityInfo> => {
+export const getCityInfo = (): Promise<string | null> => {
   return new Promise((resolve, reject) => {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${API_KEY}`;
-        fetch(geocodingUrl)
-          .then((response) => response.json())
-          .then((data) => {
-            // Check if results array is not empty
-            if (data.results && data.results.length > 0) {
-              const city = data.results[0].address_components?.find(
+    // 위치 정보를 가져오는 비동기 함수
+    const getGeolocation = (): void => {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          // 위치 정보를 기반으로 지오코딩 API에 요청
+          const geocodingUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=${API_KEY}`;
+          fetch(geocodingUrl)
+            .then((response) => response.json())
+            .then((data) => {
+              // API 응답에서 도시 정보 추출
+              const city = data.results?.[0]?.address_components?.find(
                 (component: any) => component.types.includes("locality")
               );
-              const cityInfo: CityInfo = {
-                city: city ? city.long_name : null,
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              };
-              resolve(cityInfo);
-            } else {
-              reject(new Error("No results in the API response."));
-            }
-          })
-          .catch((error) => {
-            reject(error);
-          });
-      },
-      (error) => {
-        reject(error);
-      }
-    );
+              // cityName 생성
+              const cityName = city ? city.long_name : null;
+              resolve(cityName);
+            })
+            .catch(reject); // fetch 에러 처리
+        },
+        reject // 위치 정보 가져오기 실패 시 처리
+      );
+    };
+
+    // 브라우저가 위치 정보 지원 여부 확인
+    if ("geolocation" in navigator) {
+      getGeolocation(); // 위치 정보 가져오기 시작
+    } else {
+      reject(new Error("Geolocation is not supported."));
+    }
   });
 };
