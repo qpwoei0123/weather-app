@@ -49,10 +49,12 @@ export interface Condition {
 }
 
 export const getCurrentWeather = async (
-  location: string
+  lat: number,
+  lon: number
 ): Promise<Response> => {
   const res = await fetch(
-    `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${location}&aqi=no`,
+    `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lat},${lon}
+    &aqi=no`,
     { next: { tags: ["current"] } }
   );
   if (!res.ok) {

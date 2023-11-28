@@ -6,7 +6,7 @@ import RevalidateButton from "@/component/RevalidateButton";
 import MyCityDiv from "../component/MyCityDiv";
 
 export default async function Home() {
-  const res = await getCurrentWeather("seoul");
+  const res = await getCurrentWeather(35.65868065268432, 139.7020851738114);
 
   const time = await getTime(res.location.tz_id);
 

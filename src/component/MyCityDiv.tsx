@@ -9,7 +9,7 @@ export default function MyCityDiv() {
     const fetchData = async () => {
       try {
         const data = await getCityInfo();
-        setCityInfo(data);
+        setCityInfo(data?.cityName ?? null);
       } catch (error) {
         console.error(error);
       }
