@@ -54,9 +54,10 @@ export const getCurrentWeather = async (
 ): Promise<Response> => {
   const res = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lat},${lon}
-    &aqi=no`,
+    &aqi=no&lang=ko`,
     { next: { tags: ["current"] } }
   );
+
   if (!res.ok) {
     throw new Error(`날씨정보 못 가져옴`);
   }
