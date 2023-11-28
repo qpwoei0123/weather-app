@@ -54,8 +54,9 @@ export const getCurrentWeather = async (
 ): Promise<Response> => {
   const res = await fetch(
     `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${lat},${lon}
-    &aqi=no&lang=ko`,
-    { next: { tags: ["current"] } }
+    &aqi=no&`,
+    // { next: { tags: ["current"] } }
+    { next: { revalidate: 60 } }
   );
 
   if (!res.ok) {
