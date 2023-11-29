@@ -1,47 +1,96 @@
-.list {
-  list-style: none;
-  padding: 0;
-}
-
-.list li {
-  margin-top: 30px;
-  font-size: 20px;
-}
-
-.list li p {
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.link {
-  font-weight: bold;
-  font-size: 40px;
-  text-decoration: none;
-  color: aliceblue;
-}
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 82, 246, 0.787);
+  background-image: url("../asset/clear.jpg"); /* 이미지 경로에 맞게 수정해주세요 */
+  background-size: cover;
   color: white;
 }
 
-.box {
-  border-radius: 10px;
+.mainDiv {
+  width: 75vw;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-  height: 80%;
-  width: 50%;
+  font-weight: 500;
+  font-size: 30px;
 }
 
-.weatherIcon {
+.firstBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+.firstBox :first-child {
+  font-size: 80px;
+  font-weight: 1000;
+}
+.firstBox :last-child {
+  font-size: 50px;
+  margin-left: 10px;
+}
+
+.secondBox {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 300;
+}
+
+.thirdBox {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  align-items: end;
+  margin: 10px;
+  font-weight: 800;
+}
+
+.sideBar {
+  width: 25vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
+}
+
+.topBox {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.topBox :first-child {
   width: 50px;
   height: auto;
+  padding: 10px;
+}
+.topBox :last-child {
+  padding: 10px;
+}
+
+.bottomBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  flex: 4;
+}
+.bottomBox h1 {
+  margin: 0 0 10px 50px;
+}
+.bottomBox li {
+  margin: 10px 0 10px 20px;
+  font-weight: 700;
+  list-style: circle;
+}
+.day {
+  margin: 0 0 30px 30px;
 }

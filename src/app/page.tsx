@@ -1,38 +1,53 @@
 import Link from "next/link";
+import Image from "next/image";
 import style from "./style.module.css";
+import { getForecast } from "./utils/getForecast";
 import { getCurrentWeather } from "./utils/getCrurrentWeather";
 import { getTime } from "./utils/getTime";
-import RevalidateButton from "@/component/RevalidateButton";
 import MyCityDiv from "../component/MyCityDiv";
+import locationIcon from "../asset/Location.png";
 
 export default async function Home() {
   const res = await getCurrentWeather(35.65868065268432, 139.7020851738114);
-  console.log(res);
   const time = await getTime(res.location.tz_id);
+  const forecast = await getForecast(35.65868065268432, 139.7020851738114);
 
   return (
-    <div className={style.box}>
-      <ul className={style.list}>
-        <li>
-          <Link href="seoul?name=서울" className={style.link}>
+    <div className={style.container}>
+      <div className={style.mainDiv}>
+        <div className={style.firstBox}>
+          {/* <Link href="seoul?name=서울" className={style.link}>
             {res.location.name}
-          </Link>
+          </Link> */}
+          <p>{res.location.name}</p>
           <p>{res.current.temp_c}℃</p>
-
-          <img src={res.current.condition.icon} alt={"날씨 아이콘"} />
-
+        </div>
+        <div className={style.secondBox}>
           <p>{res.current.condition.text} </p>
-          <p> {time.date}</p>
-
-          <p> {time.year}</p>
-          <p> {time.month}</p>
-          <p> {time.day}</p>
+        </div>
+        <div className={style.thirdBox}>
           <p> {time.dayOfWeek}</p>
-          <p> {time.time}</p>
-        </li>
-      </ul>
-      <RevalidateButton tag={"current"} />
-      <MyCityDiv />
+          <p> {time.date}</p>
+        </div>
+      </div>
+      <div className={style.sideBar}>
+        <div className={style.topBox}>
+          <Image src={locationIcon} alt="Icon" />
+          <MyCityDiv />
+        </div>
+        <div className={style.bottomBox}>
+          <h1>ForeCast</h1>
+          {forecast.forecast.forecastday.map((el) => (
+            <div key={el.date} className={style.day}>
+              <li>
+                {el.date.slice(5)}
+                <li>{el.day.avgtemp_c}℃</li>
+                <li>{el.day.condition.text}</li>
+              </li>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

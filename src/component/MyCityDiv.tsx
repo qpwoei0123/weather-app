@@ -21,8 +21,8 @@ export default function MyCityDiv() {
 
   // cityInfo가 아직 없는 경우를 처리
   return (
-    <div className={style.box}>
-      {cityInfo ? <p>{cityInfo}</p> : <p>Loading...</p>}
-    </div>
+    <p className={style.myCity}>
+      {cityInfo ? `${cityInfo}의 날씨 알아보기.` : "Loading..."}
+    </p>
   );
 }
