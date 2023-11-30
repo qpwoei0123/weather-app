@@ -39,11 +39,11 @@ export default async function Home() {
           <h1>ForeCast</h1>
           {forecast.forecast.forecastday.map((el) => (
             <div key={el.date} className={style.day}>
-              <li>
+              <ul>
                 {el.date.slice(5)}
                 <li>{el.day.avgtemp_c}℃</li>
                 <li>{el.day.condition.text}</li>
-              </li>
+              </ul>
             </div>
           ))}
         </div>
