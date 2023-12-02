@@ -7,9 +7,5 @@ export default function HomeButton() {
   const buttonHandler = () => {
     router.push("/");
   };
-  return (
-    <div className={style.box}>
-      <button onClick={buttonHandler}>홈으로</button>
-    </div>
-  );
+  return <button onClick={buttonHandler}>home</button>;
 }
