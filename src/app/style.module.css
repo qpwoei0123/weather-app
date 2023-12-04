@@ -110,3 +110,33 @@
   height: 100vh;
   z-index: -1; /* 다른 요소 위에 표시되도록 순서를 뒤로 보냅니다 */
 }
+
+.loadingContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.cloud {
+  background: #3498db;
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  margin-bottom: 20px;
+  animation: fillCloud 2s infinite alternate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px 5px rgba(52, 152, 219, 0.5);
+}
+
+@keyframes fillCloud {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}

@@ -1,7 +1,10 @@
+import React from "react";
+import style from "./style.module.css";
+
 export default function Loading() {
   return (
-    <>
-      <h1>로딩중..........</h1>
-    </>
+    <div className={style.loadingContainer}>
+      <div className={style.cloud}>기상정보를 가져오는중...</div>
+    </div>
   );
 }
