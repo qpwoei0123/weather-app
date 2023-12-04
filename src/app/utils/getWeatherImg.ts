@@ -4,7 +4,9 @@ import cloudy from "../../asset/cloudy.png";
 import rain from "../../asset/rain.png";
 import snow from "../../asset/snow.png";
 
+// 날씨code를 받아서 StaticImageData을 반환하는 함수.
 export const getWeatherImg = async (code: number): Promise<StaticImageData> => {
+  // 응답 데이터 표를 보며 골라낸? 코드분류
   const weatherCodes = {
     clear: [1000],
     cloudy: [1003, 1006, 1009, 1030, 1072, 1135, 1147],
@@ -18,16 +20,12 @@ export const getWeatherImg = async (code: number): Promise<StaticImageData> => {
   const isRainy = weatherCodes.rain.includes(code);
 
   if (isClear) {
-    console.log("Clear weather");
     return clear;
   } else if (isCloudy) {
-    console.log("Cloudy weather");
     return cloudy;
   } else if (isRainy) {
-    console.log("rain weather");
     return rain;
   } else {
-    console.log("snow weather");
     return snow;
   }
 };
