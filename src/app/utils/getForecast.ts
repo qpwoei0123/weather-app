@@ -151,7 +151,7 @@ export interface Condition {
 
 export const getForecast = async (lat: number, lon: number): Promise<Root> => {
   const res = await fetch(
-    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=7&aqi=no&alerts=no`,
+    `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${lat},${lon}&days=7&aqi=no&alerts=no&lang=ko`,
     { next: { revalidate: 60 } }
   );
   if (!res.ok) {
