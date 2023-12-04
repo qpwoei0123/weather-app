@@ -17,9 +17,10 @@ export const getCityInfo = (): Promise<CityInfo | null> => {
           fetch(geocodingUrl)
             .then((response) => response.json())
             .then((data) => {
+              console.log(data);
               // API 응답에서 도시 정보 추출
               const city = data.results?.[0]?.address_components?.find(
-                (component: any) => component.types.includes("locality")
+                (component: any) => component.types.includes("sublocality")
               );
               // CityInfo 타입을 따르는 객체 생성
               const cityInfo: CityInfo = {
