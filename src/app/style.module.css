@@ -97,8 +97,7 @@
   font-size: 15px;
   list-style: circle;
 }
-
-.day {
+.dayList {
   margin: 0 0 30px 50px;
 }
 
@@ -138,5 +137,36 @@
   }
   100% {
     transform: scale(1.2);
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+  }
+  .mainDiv {
+    width: 100vw;
+    height: 70vh;
+  }
+  .sideBar {
+    width: 100vw;
+    height: 30vh;
+    flex-direction: row;
+  }
+  .topBox {
+    flex: 1;
+  }
+  .bottomBox {
+    flex: 2;
+    flex-direction: column;
+  }
+  .day {
+    flex-direction: row;
+  }
+  .dayDiv {
+    display: flex;
+  }
+  .bottomBox h1 {
+    margin: 0 0 20px 50px;
   }
 }

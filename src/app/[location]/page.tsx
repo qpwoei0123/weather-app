@@ -1,6 +1,6 @@
 import HomeButton from "@/component/HomeButton";
 import { getForecast } from "../utils/getForecast";
-import style from "./style.module.css";
+import style from "../style.module.css";
 import Image from "next/image";
 import { getTime } from "../utils/getTime";
 import { getWeatherImg } from "../utils/getWeatherImg";
@@ -57,15 +57,15 @@ export default async function Location({ params, searchParams }: Props) {
           </div>
           <div className={style.bottomBox}>
             <h1>ForeCast</h1>
-            {forecast.forecast.forecastday.map((el) => (
-              <div key={el.date} className={style.day}>
-                <ul>
+            <div className={style.dayDiv}>
+              {forecast.forecast.forecastday.map((el) => (
+                <ul key={el.date} className={style.dayList}>
                   {el.date.slice(5)}
                   <li>{el.day.avgtemp_c}℃</li>
                   <li>{el.day.condition.text}</li>
                 </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
