@@ -1,6 +1,17 @@
-.box {
-}
-
 .myCity {
   padding: 100px;
+}
+@font-face {
+  font-family: "LAB디지털";
+  font-style: normal;
+  font-weight: 1000;
+  src: url("../asset/font/LAB디지털.ttf") format("opentype");
+}
+
+.clockBox {
+  font-size: 50px;
+  font-family: "LAB디지털", sans-serif; /* 원하는 디지털 폰트로 변경하세요 */
+  text-align: center;
+  padding: 10px;
+  color: #fff;
 }
