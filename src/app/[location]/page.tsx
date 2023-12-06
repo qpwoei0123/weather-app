@@ -1,9 +1,9 @@
-import HomeButton from "@/component/HomeButton";
 import { getForecast } from "../utils/getForecast";
-import style from "../style.module.css";
+import style from "./style.module.css";
 import Image from "next/image";
 import { getTime } from "../utils/getTime";
 import { getWeatherImg } from "../utils/getWeatherImg";
+import { RealTimeClock } from "@/component/RealTimeClock";
 
 type Props = {
   params: {
@@ -53,7 +53,7 @@ export default async function Location({ params, searchParams }: Props) {
         </div>
         <div className={style.sideBar}>
           <div className={style.topBox}>
-            <HomeButton />
+            <RealTimeClock />
           </div>
           <div className={style.bottomBox}>
             <h1>ForeCast</h1>
