@@ -66,12 +66,24 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+@keyframes moveUpDown {
+  0% {
+    margin-bottom: 0px;
+    margin-top: 15px;
+  }
+  100% {
+    margin-bottom: 15px;
+    margin-top: 0px;
+  }
 }
 .topBox :first-child {
   width: 50px;
   height: auto;
-  padding: 10px;
+  animation: moveUpDown 1s infinite alternate;
 }
+
 .topBox :last-child {
   padding: 10px;
 }
