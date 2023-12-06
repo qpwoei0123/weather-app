@@ -67,14 +67,6 @@
   justify-content: center;
   align-items: center;
 }
-.topBox :first-child {
-  width: 50px;
-  height: auto;
-  padding: 10px;
-}
-.topBox :last-child {
-  padding: 10px;
-}
 
 .bottomBox {
   display: flex;
@@ -98,7 +90,7 @@
   list-style: circle;
 }
 
-.day {
+.dayList {
   margin: 0 0 30px 50px;
 }
 
