@@ -9,9 +9,13 @@
 }
 
 .clockBox {
-  font-size: 50px;
-  font-family: "LAB디지털", sans-serif; /* 원하는 디지털 폰트로 변경하세요 */
+  font-size: 80px;
   text-align: center;
-  padding: 10px;
   color: #fff;
+}
+
+@media (max-width: 1300px) {
+  .clockBox {
+    font-size: 50px;
+  }
 }
