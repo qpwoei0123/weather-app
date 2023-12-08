@@ -1,16 +1,19 @@
-/* 교보문고 글꼴 */
 @font-face {
-  font-family: "KyoboHand";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/KyoboHand.woff")
-    format("woff");
-  font-weight: normal;
+  font-family: "LINESeedKR-Bd";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
+    format("woff2");
+  font-weight: 700;
   font-style: normal;
 }
 
 * {
   margin: 0;
   padding: 0;
-  font-family: "KyoboHand", sans-serif;
+  font-family: "LINESeedKR-Bd", sans-serif;
+}
+
+html {
+  font-size: 20px;
 }
 
 a {
