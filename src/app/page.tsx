@@ -38,13 +38,13 @@ export default async function Home() {
             <MyCityDiv />
           </div>
           <div className={style.bottomBox}>
-            <h1>ForeCast</h1>
             <div className={style.dayDiv}>
               {forecast.forecast.forecastday.map((el) => (
                 <ul key={el.date} className={style.dayList}>
-                  {el.date.slice(5)}
-                  <li>{el.day.avgtemp_c}℃</li>
+                  {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
                   <li>{el.day.condition.text}</li>
+                  <li>최고: {el.day.maxtemp_c}℃</li>
+                  <li>최저: {el.day.mintemp_c}℃</li>
                 </ul>
               ))}
             </div>

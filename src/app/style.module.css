@@ -9,7 +9,7 @@
 }
 
 .mainDiv {
-  width: 75vw;
+  width: 80vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -51,7 +51,7 @@
 }
 
 .sideBar {
-  width: 25vw;
+  width: 20vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -61,12 +61,11 @@
 }
 
 .topBox {
-  flex: 2;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
 }
 @keyframes moveUpDown {
   0% {
@@ -84,33 +83,31 @@
   animation: moveUpDown 1s infinite alternate;
 }
 
-.topBox :last-child {
-  padding: 10px;
-}
-
 .bottomBox {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   width: 100%;
   flex: 4;
+  padding: 0;
+  margin: 0;
 }
-.bottomBox h1 {
-  margin: 0 0 30px 50px;
-}
+
 .bottomBox ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 1.5rem;
+  margin-bottom: 50px;
 }
 .bottomBox li {
-  margin: 10px 0 10px 20px;
-  padding: 0;
+  list-style: none;
+  margin-top: 5px;
   font-weight: 500;
   font-size: 15px;
-  list-style: circle;
-}
-.dayList {
-  margin: 0 0 30px 50px;
+  letter-spacing: 1px;
 }
 
 .backgroundImg {
@@ -121,64 +118,24 @@
   height: 100vh;
   z-index: -1; /* 다른 요소 위에 표시되도록 순서를 뒤로 보냅니다 */
 }
-
-.loadingContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.cloud {
-  background: #3498db;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  position: relative;
-  margin-bottom: 20px;
-  animation: fillCloud 2s infinite alternate;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px 5px rgba(52, 152, 219, 0.5);
-}
-
-@keyframes fillCloud {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.2);
-  }
-}
-
 @media (max-width: 1000px) {
   .container {
     flex-direction: column;
   }
   .mainDiv {
     width: 100vw;
-    height: 70vh;
+    height: 75vh;
   }
   .sideBar {
     width: 100vw;
-    height: 30vh;
-    flex-direction: row;
-  }
-  .topBox {
-    flex: 1;
-  }
-  .bottomBox {
-    flex: 2;
+    height: 25vh;
     flex-direction: column;
   }
-  .day {
-    flex-direction: row;
+  .bottomBox {
+    display: none;
   }
-  .dayDiv {
-    display: flex;
-  }
-  .bottomBox h1 {
-    margin: 0 0 20px 50px;
+
+  .bottomBox ul {
+    margin: 0;
   }
 }
