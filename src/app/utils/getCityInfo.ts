@@ -20,8 +20,12 @@ export const getCityInfo = (): Promise<CityInfo | null> => {
               console.log(data);
               // API 응답에서 도시 정보 추출
               const city = data.results?.[0]?.address_components?.find(
-                (component: any) => component.types.includes("sublocality")
+                (component: any) =>
+                  component.types.includes("sublocality") ||
+                  component.types.includes("locality") ||
+                  component.types.includes("political")
               );
+
               // CityInfo 타입을 따르는 객체 생성
               const cityInfo: CityInfo = {
                 cityName: city ? city.long_name : null,
