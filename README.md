@@ -31,7 +31,10 @@
 ## 👓 Service
 
 1. 메인 페이지
-   <img width="1431" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/57020370-d98f-4f5c-81e4-d61580ea8846">
+<img width="1433" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/90f2c453-6e88-46cd-8aff-22ed649361ab">
+
+<br>
+
 
 
 2. 나의 위치 페이지
