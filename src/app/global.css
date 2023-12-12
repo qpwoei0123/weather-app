@@ -24,3 +24,9 @@ a {
 a:hover {
   color: rgba(0, 255, 0, 0.5); /* 링크에 호버될 때 색상 변경 */
 }
+
+@media (max-width: 1000px) {
+  * {
+    font-size: 90%;
+  }
+}
