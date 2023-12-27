@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
+  .flexEnd {
+    @apply flex items-end justify-end;
+  }
+  .flexCol {
+    @apply flex flex-col;
+  }
+}
+
 @font-face {
   font-family: "LINESeedKR-Bd";
   src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_11-01@1.0/LINESeedKR-Bd.woff2")
