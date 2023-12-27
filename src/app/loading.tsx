@@ -1,10 +1,9 @@
 import React from "react";
-import style from "./style.module.css";
 
 export default function Loading() {
   return (
-    <div className={`${style.loadingContainer} `}>
-      <div className={style.loader}></div>
+    <div className="flexCenter h-screen ">
+      <div className="animate-spin rounded-full border-t-8 border-blue-500 border-opacity-25 h-40 w-40 mb-4"></div>
     </div>
   );
 }
