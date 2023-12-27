@@ -114,10 +114,7 @@
   margin-bottom: 50px;
   transition: transform 0.3s ease-in-out;
 }
-.bottomBox ul:hover {
-  /* Adding horizontal rotation effect on hover */
-  transform: scale(1.1);
-}
+
 .bottomBox li {
   list-style: none;
   margin-top: 5px;
@@ -156,5 +153,31 @@
 
   .bottomBox ul {
     margin: 0;
+  }
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #3498db;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

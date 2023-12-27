@@ -97,10 +97,6 @@
   margin-bottom: 50px;
   transition: transform 0.3s ease-in-out;
 }
-.bottomBox ul:hover {
-  /* Adding horizontal rotation effect on hover */
-  transform: scale(1.1);
-}
 
 .bottomBox li {
   list-style: none;
