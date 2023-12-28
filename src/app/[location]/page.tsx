@@ -36,40 +36,46 @@ export default async function Location({ params, searchParams }: Props) {
       <Image
         src={weatherSrc}
         alt="backgroundImg"
-        className="fixed top-0 left-0 w-screen h-screen -z-10"
+        className="fixed left-0 top-0 -z-10 h-screen w-screen"
       />
-      <div className="flexCenter w-screen h-screen text-white">
-        <section className="flex flex-col w-4/5 h-full font-medium text-3xl">
-          <div className="flex-grow flex flex-col m-4">
+      <div className="flexCenter h-screen w-screen flex-col  text-white lg:flex-row">
+        <section
+          className="flex h-3/4 
+          w-full flex-col 
+          text-3xl font-medium 
+          lg:h-full lg:w-4/5 "
+        >
+          <div className="m-4 flex flex-grow flex-col">
             <p className="text-7xl font-extrabold">{name}</p>
-            <p className="text-5xl ml-2"> {forecast.current.temp_c}℃</p>
+            <p className="ml-2 text-5xl"> {forecast.current.temp_c}℃</p>
           </div>
-          <div className="flexCenter font-light flex-grow">
+          <div className="flexCenter flex-grow font-light">
             <p>{forecast.current.condition.text} </p>
           </div>
-          <div className="flex-grow flexEnd flex-col m-4 font-extrabold">
+          <div className="flexEnd m-4 flex-grow flex-col font-extrabold">
             <p> {time.dayOfWeek}</p>
             <p> {time.date}</p>
           </div>
         </section>
-        <section className="w-1/5 h-full flexCol items-center backdrop-blur-sm shadow-2xl">
-          <div className="flex-grow flexCenter flex-col ">
+
+        <section className="lg:flexCol h-1/4 w-full flex-row items-center shadow-2xl backdrop-blur-sm lg:h-full lg:w-1/5">
+          <div className="flexCenter hidden flex-grow flex-col lg:block">
             <RealTimeClock />
           </div>
-          <div className="flexCol justify-center w-full">
+          <div className="lg:flexCol flexRow w-full items-center justify-evenly lg:justify-center">
             {forecast.forecast.forecastday.map((el) => (
               <ul
                 key={el.date}
-                className="flexCol items-center font-bold text-2xl mb-8"
+                className="flexCol m-0 items-center text-2xl font-bold lg:mb-8 "
               >
                 {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
-                <li className="list-none mt-1 font-medium text-sm tracking-widest">
+                <li className="mt-1 list-none text-sm font-medium tracking-widest">
                   {el.day.condition.text}
                 </li>
-                <li className="list-none mt-1 font-medium text-sm tracking-widest">
+                <li className="mt-1 list-none text-sm font-medium tracking-widest">
                   최고: {el.day.maxtemp_c}℃
                 </li>
-                <li className="list-none mt-1 font-medium text-sm tracking-widest">
+                <li className="mt-1 list-none text-sm font-medium tracking-widest">
                   최저: {el.day.mintemp_c}℃
                 </li>
               </ul>
