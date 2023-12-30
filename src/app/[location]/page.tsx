@@ -4,6 +4,7 @@ import { getTime } from "../utils/getTime";
 import { getWeatherImg } from "../utils/getWeatherImg";
 import { RealTimeClock } from "@/component/RealTimeClock";
 import Cursor from "@/component/Cursor";
+import WeatherCard from "@/component/WeatherCard";
 
 type Props = {
   params: {
@@ -64,21 +65,7 @@ export default async function Location({ params, searchParams }: Props) {
           </div>
           <div className="lg:flexCol flexRow w-full items-center justify-evenly lg:justify-center">
             {forecast.forecast.forecastday.map((el) => (
-              <ul
-                key={el.date}
-                className="flexCol m-0 items-center text-2xl font-bold lg:mb-8 "
-              >
-                {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  {el.day.condition.text}
-                </li>
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  최고: {el.day.maxtemp_c}℃
-                </li>
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  최저: {el.day.mintemp_c}℃
-                </li>
-              </ul>
+              <WeatherCard el={el} />
             ))}
           </div>
         </section>
