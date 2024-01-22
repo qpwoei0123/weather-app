@@ -1,8 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { CityInfo, getCityInfo } from "@/app/utils/getCityInfo";
-import style from "./style.module.css";
 import Link from "next/link";
+import location from "../asset/Location.png";
+import Image from "next/image";
 
 export default function MyCityDiv() {
   const [cityInfo, setCityInfo] = useState<CityInfo | null>(null);
@@ -37,21 +38,28 @@ export default function MyCityDiv() {
 
   // 위치엑세스 권한 유무, 도시정보 유무
   return (
-    <>
-      {isGeolocation ? (
-        cityInfo ? (
-          <Link
-            href={`${cityInfo.cityName}?lon=${cityInfo.longitude}&lat=${cityInfo.latitude}`}
-            className={style.link}
-          >
-            {cityInfo.cityName}의 날씨는?
-          </Link>
-        ) : (
-          <p>위치를 불러오는 중...</p>
-        )
-      ) : (
-        <p>위치 액세스를 허용 해주세요!</p>
+    <div className="flexCol items-center gap-5 p-10">
+      {!isGeolocation && (
+        <Image src={location} alt="location img" className="animate-bounce" />
       )}
-    </>
+      <div className="text-xl">
+        {isGeolocation ? (
+          cityInfo ? (
+            <Link
+              href={`${cityInfo.cityName}?lon=${cityInfo.longitude}&lat=${cityInfo.latitude}`}
+            >
+              {cityInfo.cityName}의 날씨는?
+            </Link>
+          ) : (
+            <p>위치를 불러오는 중...</p>
+          )
+        ) : (
+          <p>
+            위치액세스 허용 후 <br />
+            새로고침 해주세요!
+          </p>
+        )}
+      </div>
+    </div>
   );
 }
