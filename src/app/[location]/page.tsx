@@ -4,6 +4,7 @@ import { getTime } from "../utils/getTime";
 import { getWeatherImg } from "../utils/getWeatherImg";
 import { RealTimeClock } from "@/component/RealTimeClock";
 import Cursor from "@/component/Cursor";
+import WeatherCard from "@/component/WeatherCard";
 
 type Props = {
   params: {
@@ -36,49 +37,31 @@ export default async function Location({ params, searchParams }: Props) {
       <Image
         src={weatherSrc}
         alt="backgroundImg"
-        className="fixed left-0 top-0 -z-10 h-screen w-screen"
+        className="fixed left-0 top-0 -z-10 h-screen w-screen object-cover"
       />
       <div className="flexCenter h-screen w-screen flex-col  text-white lg:flex-row">
         <section
-          className="flex h-3/4 
-          w-full flex-col 
-          text-3xl font-medium 
-          lg:h-full lg:w-4/5 "
+          className="g:h-full flex
+             h-full w-full 
+             flex-col text-4xl 
+          font-medium lg:w-4/5 lg:text-5xl "
         >
           <div className="m-4 flex flex-grow flex-col">
-            <p className="text-7xl font-extrabold">{name}</p>
-            <p className="ml-2 text-5xl"> {forecast.current.temp_c}℃</p>
+            <p className="">{name}</p>
+            <p className=""> {forecast.current.temp_c}℃</p>
           </div>
-          <div className="flexCenter flex-grow font-light">
+          <div className="flexCenter flex-grow lg:text-3xl">
             <p>{forecast.current.condition.text} </p>
           </div>
-          <div className="flexEnd m-4 flex-grow flex-col font-extrabold">
+          <div className="flexEnd m-4 flex-grow flex-col">
             <p> {time.dayOfWeek}</p>
             <p> {time.date}</p>
           </div>
         </section>
-
-        <section className="lg:flexCol h-1/4 w-full flex-row items-center shadow-2xl backdrop-blur-sm lg:h-full lg:w-1/5">
-          <div className="flexCenter hidden flex-grow flex-col lg:block">
-            <RealTimeClock />
-          </div>
-          <div className="lg:flexCol flexRow w-full items-center justify-evenly lg:justify-center">
+        <section className="m-5 h-1/4 w-11/12 rounded-3xl shadow-2xl backdrop-blur-sm lg:m-10 lg:h-5/6 lg:w-1/5">
+          <div className="lg:flexCol flexRow  h-full w-full items-center justify-evenly">
             {forecast.forecast.forecastday.map((el) => (
-              <ul
-                key={el.date}
-                className="flexCol m-0 items-center text-2xl font-bold lg:mb-8 "
-              >
-                {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  {el.day.condition.text}
-                </li>
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  최고: {el.day.maxtemp_c}℃
-                </li>
-                <li className="mt-1 list-none text-sm font-medium tracking-widest">
-                  최저: {el.day.mintemp_c}℃
-                </li>
-              </ul>
+              <WeatherCard el={el} />
             ))}
           </div>
         </section>
