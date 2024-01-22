@@ -42,16 +42,19 @@ export default async function Home() {
             {forecast.forecast.forecastday.map((el) => (
               <ul
                 key={el.date}
-                className="flexCol lg: m-0 items-center text-xs font-bold lg:text-base  "
+                className="flexCol items-center text-xs lg:text-base  "
               >
-                {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
-                <li className="list-none font-medium tracking-widest">
+                <li className="mb-3">
+                  {`${el.date.slice(5, 7)}/${el.date.slice(8, 10)}`}
+                </li>
+
+                <li className="list-none tracking-widest">
                   {el.day.condition.text}
                 </li>
-                <li className="list-none font-medium tracking-widest">
+                <li className="list-none tracking-widest">
                   최고: {el.day.maxtemp_c}℃
                 </li>
-                <li className="ist-none font-medium tracking-widest">
+                <li className="ist-none  tracking-widest">
                   최저: {el.day.mintemp_c}℃
                 </li>
               </ul>
