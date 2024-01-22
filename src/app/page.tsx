@@ -1,10 +1,8 @@
 import Image from "next/image";
-import style from "./style.module.css";
 import { getForecast } from "./utils/getForecast";
 import { getTime } from "./utils/getTime";
-import MyCityDiv from "../component/MyCityDiv";
-import locationIcon from "../asset/Location.png";
 import { getWeatherImg } from "./utils/getWeatherImg";
+import { Modal } from "../component/Modal";
 
 export default async function Home() {
   const forecast = await getForecast(51.507992, -0.128124);
@@ -13,6 +11,7 @@ export default async function Home() {
 
   return (
     <>
+      <Modal />
       <Image
         src={weatherSrc}
         alt="backgroundImg"
@@ -38,15 +37,7 @@ export default async function Home() {
           </div>
         </section>
 
-        <section className="lg:flexCol h-1/4 w-full flex-row items-center shadow-2xl backdrop-blur-sm lg:h-full lg:w-1/5">
-          <div className="flexCenter mt-10 flex-grow flex-col lg:mt-0">
-            <Image
-              className="w-14 animate-bounce"
-              src={locationIcon}
-              alt="Icon"
-            />
-            <MyCityDiv />
-          </div>
+        <section className="lg:flexCol h-1/4 w-full flex-row items-center justify-center shadow-2xl backdrop-blur-sm lg:h-full lg:w-1/5">
           <div className="lg:flexCol flexRow hidden w-full items-center justify-evenly lg:block lg:justify-center">
             {forecast.forecast.forecastday.map((el) => (
               <ul
