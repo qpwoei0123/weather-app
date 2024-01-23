@@ -60,8 +60,8 @@ export default async function Location({ params, searchParams }: Props) {
         </section>
         <section className="m-5 h-1/4 w-11/12 rounded-3xl shadow-2xl backdrop-blur-sm lg:m-10 lg:h-5/6 lg:w-1/5">
           <div className="lg:flexCol flexRow  h-full w-full items-center justify-evenly">
-            {forecast.forecast.forecastday.map((el) => (
-              <WeatherCard el={el} />
+            {forecast.forecast.forecastday.map((el, index) => (
+              <WeatherCard el={el} key={index} />
             ))}
           </div>
         </section>
