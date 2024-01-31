@@ -6,6 +6,7 @@
  `배포 링크` : [weather-app](https://weather-app-qpwoei0123s-projects.vercel.app/) 
  
  <h3>위치기반으로 나의 동네의 날씨예보를 알 수 있는 서비스.<h3>
+<img width="1439" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/64d04a32-4eb0-4bf3-b9e3-5ab24f476f7e">
 
 
 
@@ -19,20 +20,6 @@
 
 
 </br>
-
-
-## 👓 Service
-
-1. 메인 페이지
-<img width="1433" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/90f2c453-6e88-46cd-8aff-22ed649361ab">
-
-<br>
-
-
-
-2. 나의 위치 페이지
-  <img width="1429" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/8afd4fbf-bbac-4489-a0af-4ac6a59411c3">
-
 
 
 
