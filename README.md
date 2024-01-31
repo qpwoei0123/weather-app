@@ -5,7 +5,7 @@
  `프로젝트 기간` : 2023.12.04 - 2023.12.08  <br>
  `배포 링크` : [weather-app](https://weather-app-qpwoei0123s-projects.vercel.app/) 
  
- <h3>Next 13버전으로 날씨앱을 만들어 보자<h3>
+ <h3>위치기반으로 나의 동네의 날씨예보를 알 수 있는 서비스.<h3>
 
 <br>
 
