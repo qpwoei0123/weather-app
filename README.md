@@ -6,7 +6,12 @@
  `배포 링크` : [weather-app](https://weather-app-qpwoei0123s-projects.vercel.app/) 
  
  <h3>위치기반으로 나의 동네의 날씨예보를 알 수 있는 서비스.<h3>
+
+## PC
 <img width="1439" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/64d04a32-4eb0-4bf3-b9e3-5ab24f476f7e">
+
+## Mobile
+<img width="488" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/912fe880-2ce2-4e3c-b999-ffc678690aea">
 
 
 
