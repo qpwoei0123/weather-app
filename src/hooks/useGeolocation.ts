@@ -15,29 +15,30 @@ const useGeolocation = (): GeolocationData => {
   });
 
   useEffect(() => {
-    const successCallback = async (position: {
-      coords: { latitude: number; longitude: number };
-    }) => {
-      const cityName = await getCityName({ coords: position.coords });
+    const successCallback = async ({ coords }: GeolocationPosition) => {
+      const cityName = await getCityName({ coords: coords });
       setData({
         cityName,
         loaded: true,
         coords: {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
+          latitude: coords.latitude,
+          longitude: coords.longitude,
         },
       });
     };
-    const errorCallback = (error: { message: any }) => {
+    const errorCallback = ({ message }: GeolocationPositionError) => {
       setData({
         loaded: true,
-        errorMessege: error.message,
+        errorMessege: message,
       });
     };
-
+    // 브라우저가 geolocation을 지원하지 않는 경우를 체크
     "geolocation" in navigator
       ? navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
-      : errorCallback({ message: "브라우저가 위치정보를 지원하지 않습니다." });
+      : setData({
+          loaded: true,
+          errorMessege: "브라우저가 geolocation을 지원하지 않습니다.",
+        });
   }, []);
 
   return data;
