@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "SnapWeather",
   description: "동네 날씨를 알려드려요.",
   icons: {
-    icon: "/SnapWeather.png",
+    icon: "/SnapWeather.ico",
   },
 };
 
