@@ -5,8 +5,11 @@ import "./global.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "날씨앱",
-  description: "날씨를 알려드려요.",
+  title: "SnapWeather",
+  description: "동네 날씨를 알려드려요.",
+  icons: {
+    icon: "/SnapWeather.png",
+  },
 };
 
 export default function RootLayout({
