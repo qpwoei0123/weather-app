@@ -1,27 +1,25 @@
 import { useState, useEffect } from "react";
 
 export const FocusBar = () => {
-  const [isGeolocation, setGeolocation] = useState<boolean>(false);
+  const [geolocationPermission, setGeolocationPermission] =
+    useState<boolean>(false);
   useEffect(() => {
-    // 위치엑세스 권한 체크
-    const checkgeolocation = async () => {
+    const checkGeolocation = async () => {
       const permissionStatus = await navigator.permissions.query({
         name: "geolocation",
       });
-      if (permissionStatus.state === "granted") {
-        setGeolocation(true);
-      } else {
-        setGeolocation(false);
-      }
+      setGeolocationPermission(permissionStatus.state === "granted");
+      permissionStatus.onchange = () =>
+        setGeolocationPermission(permissionStatus.state === "granted");
     };
 
-    checkgeolocation();
+    checkGeolocation();
   }, []);
 
   return (
     <>
-      {!isGeolocation && (
-        <div className="focus-bar fixed right-32 top-0 hidden h-2 w-56 animate-pulse rounded-b-full bg-green-500 lg:block" />
+      {!geolocationPermission && (
+        <div className="focus-bar fixed right-32 top-0 hidden h-5 w-56 animate-pulse rounded-b-full bg-orange-400 lg:block" />
       )}
     </>
   );

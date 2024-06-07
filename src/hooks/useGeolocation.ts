@@ -1,25 +1,21 @@
 "use client";
 import { useState, useEffect } from "react";
-import { getCityName } from "@/app/utils/getCityName";
 
 type GeolocationData = {
-  loaded: boolean;
-  cityName?: string;
+  loading: boolean;
   coords?: { latitude: number; longitude: number };
-  errorMessege?: string;
+  errorMessage?: string;
 };
 
 const useGeolocation = (): GeolocationData => {
   const [data, setData] = useState<GeolocationData>({
-    loaded: false,
+    loading: true,
   });
 
   useEffect(() => {
-    const successCallback = async ({ coords }: GeolocationPosition) => {
-      const cityName = await getCityName({ coords: coords });
+    const successCallback = ({ coords }: GeolocationPosition) => {
       setData({
-        cityName,
-        loaded: true,
+        loading: false,
         coords: {
           latitude: coords.latitude,
           longitude: coords.longitude,
@@ -28,17 +24,29 @@ const useGeolocation = (): GeolocationData => {
     };
     const errorCallback = ({ message }: GeolocationPositionError) => {
       setData({
-        loaded: true,
-        errorMessege: message,
+        loading: false,
+        errorMessage: message,
       });
     };
-    // 브라우저가 geolocation을 지원하지 않는 경우를 체크
-    "geolocation" in navigator
-      ? navigator.geolocation.getCurrentPosition(successCallback, errorCallback)
-      : setData({
-          loaded: true,
-          errorMessege: "브라우저가 geolocation을 지원하지 않습니다.",
-        });
+
+    // 권한 체크 이후 실행이 보장되어야 하므로, permissionStatus를 사용하여 체크
+    const checkPermissionAndFetchLocation = async () => {
+      const permissionStatus = await navigator.permissions.query({
+        name: "geolocation",
+      });
+
+      permissionStatus.onchange = () => {
+        if (permissionStatus.state === "granted") {
+          navigator.geolocation.getCurrentPosition(
+            successCallback,
+            errorCallback,
+          );
+        }
+      };
+    };
+    checkPermissionAndFetchLocation();
+    // 초기 권한요청을 위해 빈 함수를 실행
+    navigator.geolocation.getCurrentPosition(() => {});
   }, []);
 
   return data;
