@@ -1,30 +1,48 @@
-# weather-app : 
-<br>
+### <img width="1438" alt="Untitled" src="https://github.com/qpwoei0123/weather-app/assets/85989215/aacabbf8-b653-4f6f-91bf-95951887eddc">
+Next.js 13버전의 위치기반 날씨 알아보기 서비스.
 
- `프로젝트명` : weather-app  <br>
- `프로젝트 기간` : 2023.12.04 - 2023.12.08  <br>
- `배포 링크` : [weather-app](https://weather-app-qpwoei0123s-projects.vercel.app/) 
- 
- <h3>위치기반으로 나의 동네의 날씨예보를 알 수 있는 서비스.<h3>
+`프로젝트 기간` : 2023.12 ~ 2023.12
 
-## PC
-<img width="1439" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/64d04a32-4eb0-4bf3-b9e3-5ab24f476f7e">
+`배포링크` : https://weather-app-qpwoei0123s-projects.vercel.app/
 
-## Mobile
-<img width="488" alt="image" src="https://github.com/qpwoei0123/weather-app/assets/85989215/912fe880-2ce2-4e3c-b999-ffc678690aea">
+<br/>
 
+## 스택
 
+- Next.js
+- TypeScript
+- TailwindCss
+- axios
+<br/>
 
+## 기여한 부분
 
-## 💻 Stacks Used
+- 프론트엔드 전체
+- 웹사이트의 전반적인 디자인과 UI/UX를 담당
+    - 초기 랜딩 페이지에서 바로 사용자 위치 접근을 요청하는 것은 무례하다고 생각함.
+    - 초기 랜딩 페이지에서 실시간 런던의 날씨 예제를 보여줌으로써 사용자 위치 요청의 정당성을 부여.
+    - 사용자의 참여를 유도하기 위해 랜딩 페이지 도착 2초 후 안내 멘트 및 시각적 강조 표시 제공.
+<br/>
 
-### Front-end
-|     Html     |     CSS     |     TypeScript     |     Next    |    prettier    |
-| :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: | :----------------------------------------------------------: |
-| <img alt="Html" src ="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/440px-HTML5_logo_and_wordmark.svg.png" width="65" height="65" /> | <div style="display: flex; align-items: flex-start;"><img src="https://user-images.githubusercontent.com/111227745/210204643-4c3d065c-59ec-481d-ac13-cea795730835.png" alt="CSS" width="50" height="65" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/ts-icon.svg" alt="icon" width="75" height="75" /></div> | <div style="display: flex; align-items: flex-start;"><img src="https://cdn.worldvectorlogo.com/logos/next-js.svg" alt="icon" width="65" height="65" /></div> |  <div style="display: flex; align-items: flex-start;"><img src="https://techstack-generator.vercel.app/prettier-icon.svg" alt="icon" width="65" height="65" /></div> | 
+## 주요개발 내용
 
+### **사용자에게 위치엑세스를 요청하기 위한 노력.**
 
-</br>
+- 위치 액세스 요청의 중요성을 강조하여 사용자가 권한 요청을 인지할 수 있도록 노력했습니다.
+- 사용자 시선을 제한하기 위해 애니메이션과 색상 대비를 조정하여 위치 액세스 요청을 더욱 눈에 띄게 했습니다.
 
+### UX를 위한 위치 액세스 허용 후 자동 감지 기능 추가
 
+- 사용자 테스트에서 직접 새로고침을 해야하는 부분이 아쉽다는 피드백을 받았습니다.
+- 인터벌 기능을 사용하여 주기적인 감지를 시도했지만, 권한 상태가 보장되지 않았기 때문에 제대로 작동하지 않았습니다.
+    - `permissions.query`를 사용하여 권한 상태 객체를 생성하여 권한 상태를 보장하고, `onchange` 메서드로 효율적인 감지를 통해 사용자가 더 이상 새로고침을 하지 않아도 작동하게 개선했습니다.
 
+### **사용자에게 가장 자세한 행정 구역명을 제공하기 위한 고민.**
+
+- 사용자 경험을 위해 경기도보다는 남양주시, 남양주시보다는 다산동과 같이 보다 구체적인 행정 구역명을 제공하기로 결정했습니다.
+- **Google Maps API의 응답**에서 **place type을 기반으로 주소를 필터링**하여 사용자에게 더욱 정확한 정보를 제공했습니다.
+
+### **사용자가 날씨를 직관적으로 알 수 있는 배경을 구현.**
+
+- 텍스트만으로는 날씨를 이해하기 어려운 점을 고려하여 직관적인 시각적 효과를 제공했습니다.
+- **날씨 상태 코드를 분류**하고, 해당 **코드에 따라 다양한 배경 이미지를**제공하여 사용자의 경험을 향상시켰습니다.
