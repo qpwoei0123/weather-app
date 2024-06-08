@@ -25,7 +25,7 @@ export default async function Home() {
        font-medium lg:w-4/5 lg:text-5xl "
         >
           <div className="m-4 flex flex-grow flex-col ">
-            <p className="">Rondon</p>
+            <p className="">London</p>
             <p className=""> {forecast.current.temp_c}℃</p>
           </div>
           <div className="flexCenter flex-grow lg:text-3xl">
