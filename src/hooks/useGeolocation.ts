@@ -1,55 +1,63 @@
-"use client";
 import { useState, useEffect } from "react";
 
 type GeolocationData = {
-  loading: boolean;
-  coords?: { latitude: number; longitude: number };
-  errorMessage?: string;
+  isLoading: boolean;
+  isGranted: boolean;
+  coords: { latitude: number; longitude: number } | null;
+  errorMessage: string | null;
 };
 
 const useGeolocation = (): GeolocationData => {
-  const [data, setData] = useState<GeolocationData>({
-    loading: true,
-  });
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isGranted, setIsGranted] = useState<boolean>(false);
+  const [coords, setCoords] = useState<{
+    latitude: number;
+    longitude: number;
+  } | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   useEffect(() => {
     const successCallback = ({ coords }: GeolocationPosition) => {
-      setData({
-        loading: false,
-        coords: {
-          latitude: coords.latitude,
-          longitude: coords.longitude,
-        },
+      setCoords({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
       });
+      setIsGranted(true);
     };
+
     const errorCallback = ({ message }: GeolocationPositionError) => {
-      setData({
-        loading: false,
-        errorMessage: message,
-      });
+      setErrorMessage(message);
+      setIsGranted(false);
     };
 
-    // 권한 체크 이후 실행이 보장되어야 하므로, permissionStatus를 사용하여 체크
+    const fetchCurrentPosition = () => {
+      navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+    };
+
     const checkPermissionAndFetchLocation = async () => {
-      const permissionStatus = await navigator.permissions.query({
-        name: "geolocation",
-      });
+      try {
+        const permissionStatus = await navigator.permissions.query({
+          name: "geolocation",
+        });
 
-      permissionStatus.onchange = () => {
-        if (permissionStatus.state === "granted") {
-          navigator.geolocation.getCurrentPosition(
-            successCallback,
-            errorCallback,
-          );
-        }
-      };
+        fetchCurrentPosition();
+        setIsGranted(permissionStatus.state === "granted");
+
+        permissionStatus.onchange = () => {
+          permissionStatus.state === "granted" && fetchCurrentPosition();
+          setIsGranted(permissionStatus.state === "granted");
+        };
+      } catch (error) {
+        console.error("위치 권한 쿼리 조회 중 에러 발생:", error);
+      } finally {
+        setIsLoading(false);
+      }
     };
+
     checkPermissionAndFetchLocation();
-    // 초기 권한요청을 위해 빈 함수를 실행
-    navigator.geolocation.getCurrentPosition(() => {});
   }, []);
 
-  return data;
+  return { isLoading, isGranted, coords, errorMessage };
 };
 
 export default useGeolocation;
