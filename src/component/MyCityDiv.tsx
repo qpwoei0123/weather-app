@@ -1,38 +1,15 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import useGeolocation from "@/hooks/useGeolocation";
 import { useCityFromCoords } from "@/hooks/useCityFromCoords";
 
 export default function MyCityDiv() {
-  const [geolocationPermission, setGeolocationPermission] =
-    useState<boolean>(false);
-
-  const { coords, loading } = useGeolocation();
+  const { coords, isLoading, isGranted, errorMessage } = useGeolocation();
   const cityName = useCityFromCoords(coords);
-
-  useEffect(() => {
-    const checkGeolocation = async () => {
-      try {
-        const permissionStatus = await navigator.permissions.query({
-          name: "geolocation",
-        });
-        setGeolocationPermission(permissionStatus.state === "granted");
-        permissionStatus.onchange = () =>
-          setGeolocationPermission(permissionStatus.state === "granted");
-      } catch (error) {
-        console.error("위치 권한 확인 중 에러 발생:", error);
-        setGeolocationPermission(false);
-      }
-    };
-
-    checkGeolocation();
-  }, []);
 
   return (
     <div className="flexCol items-center gap-5 p-10 text-xl">
-      {geolocationPermission ? (
-        !loading ? (
+      {isGranted ? (
+        !isLoading ? (
           cityName ? (
             <Link
               href={`${cityName}?lon=${coords?.longitude}&lat=${coords?.latitude}`}
