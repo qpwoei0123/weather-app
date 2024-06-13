@@ -7,7 +7,7 @@ type coords = {
   longitude: number;
 };
 
-export const useCityFromCoords = (coords: coords | undefined) => {
+export const useCityFromCoords = (coords: coords | null) => {
   const [city, setCity] = useState<string | null>(null);
   if (coords) {
     getCityName({ coords: coords })
