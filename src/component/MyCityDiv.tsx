@@ -1,33 +1,52 @@
 import Link from "next/link";
 import useGeolocation from "@/hooks/useGeolocation";
 import { useCityFromCoords } from "@/hooks/useCityFromCoords";
+import { TypingEffect } from "./TypingEffect";
 
 export default function MyCityDiv() {
   const { coords, isLoading, isGranted, errorMessage } = useGeolocation();
   const cityName = useCityFromCoords(coords);
 
   return (
-    <div className="flexCol items-center gap-5 p-10 text-xl">
+    <>
       {isGranted ? (
         !isLoading ? (
           cityName ? (
             <Link
               href={`${cityName}?lon=${coords?.longitude}&lat=${coords?.latitude}`}
+              className="text-2xl text-orange-400 hover:text-orange-600"
             >
-              {cityName}의 날씨는?
+              <TypingEffect
+                text={`${cityName}의 날씨는?`}
+                onComplete={() => {}}
+              />
             </Link>
           ) : (
-            <p>도시명을 불러오는 중...</p>
+            <div className="flexCenter flex-col gap-3">
+              <i className="ri-loader-line ri-2x animate-spin text-orange-400" />
+              <TypingEffect
+                text={`도시명을 불러오는 중이에요...`}
+                onComplete={() => {}}
+              />
+            </div>
           )
         ) : (
-          <p>위치를 불러오는 중...</p>
+          <div className="flexCenter flex-col gap-3">
+            <TypingEffect
+              text={`위치를 불러오는 중...`}
+              onComplete={() => {}}
+            />
+          </div>
         )
       ) : (
-        <div className="flexCenter flex-col">
-          <i className="ri-map-pin-2-line ri-2x animate-bounce text-orange-400"></i>
-          <p>위치액세스를 허용해주세요!</p>
+        <div className="flexCenter flex-col gap-3">
+          <i className="ri-map-pin-2-line ri-2x animate-pulse text-orange-400"></i>
+          <TypingEffect
+            text={`위치액세스를 허용해 주세요!`}
+            onComplete={() => {}}
+          />
         </div>
       )}
-    </div>
+    </>
   );
 }
