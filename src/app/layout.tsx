@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import "remixicon/fonts/remixicon.css";
 import "./global.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
   title: "SnapWeather",
   description: "동네 날씨를 알려드려요.",
@@ -20,7 +18,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className="bg-black">
         <div>{children}</div>
       </body>
     </html>
