@@ -19,7 +19,7 @@ export const FocusBar = () => {
   return (
     <>
       {!geolocationPermission && (
-        <div className="focus-bar fixed right-32 top-0 hidden h-5 w-56 animate-pulse rounded-b-full bg-orange-400 lg:block" />
+        <div className="focus-bar fixed right-0 top-0 hidden h-2 w-full animate-pulse  bg-orange-400 lg:block" />
       )}
     </>
   );
